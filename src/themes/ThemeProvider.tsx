@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { themes } from './themes';
+import { setCSSVariables } from './set-css-variables';
 
 export const ThemeSelectorContext = React.createContext({
-  themeName: 'dark',
+  themeName: 'light',
   toggleTheme: () => {
   }
 });
 
 export const ThemeProvider = ({ children }: any) => {
-  const [themeName, setThemeName] = useState('dark');
+  const [themeName, setThemeName] = useState('light');
+  const [theme, setTheme] = useState<any>(themes['light']);
+  
+  useEffect(() => {
+    setCSSVariables(theme);
+  }, [themeName])
   
   const toggleTheme = () => {
-    themeName === 'dark' ? setThemeName('light') : setThemeName('dark');
+    if (theme === themes.dark) {
+      setTheme(themes.light);
+      setThemeName('light');
+    } else {
+      setTheme(themes.dark);
+      setThemeName('dark');
+    }
   };
   
   return (

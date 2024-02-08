@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React, { useContext, useEffect } from 'react';
+
+import styles from './App.module.scss';
 import { ThemeSelectorContext } from './themes/ThemeProvider';
+import { setCSSVariables } from './themes/set-css-variables';
+import { themes } from './themes/themes';
 
 function App() {
   
   const { themeName, toggleTheme } = useContext(ThemeSelectorContext);
   
+  useEffect(() => {
+    setCSSVariables(themes.light)
+  }, [])
+  
+  
   return (
       <div className="App">
-        {themeName}
+        <div className={styles.title}>{themeName}</div>
         <br/>
         <button onClick={toggleTheme}>Toggle theme</button>
       </div>
