@@ -13,19 +13,8 @@ function App() {
   const { themeName, toggleTheme } = useContext(ThemeSelectorContext);
   
   useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `/themes/lara-${themeName}-blue/theme.css`;
-    document.head.appendChild(link);
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, [themeName]);
-  
-  useEffect(() => {
     setCSSVariables(themes.light)
   }, [])
-  
   
   function setDate(value: any) {
     console.log(value)

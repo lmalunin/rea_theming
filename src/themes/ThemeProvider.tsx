@@ -16,6 +16,15 @@ export const ThemeProvider = ({ children }: any) => {
   
   useEffect(() => {
     setCSSVariables(theme);
+    
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `/themes/lara-${themeName}-blue/theme.css`;
+    document.head.appendChild(link);
+    return () => {
+      document.head.removeChild(link);
+    };
+    
   }, [themeName])
   
   const toggleTheme = () => {
