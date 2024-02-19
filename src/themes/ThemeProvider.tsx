@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { themes } from './themes';
 import { setCSSVariables } from './set-css-variables';
+import { PrimeReactContext } from 'primereact/api';
 
 export const ThemeSelectorContext = React.createContext({
   themeName: 'light',
@@ -12,6 +13,7 @@ export const ThemeProvider = ({ children }: any) => {
   const [themeName, setThemeName] = useState('light');
   const [theme, setTheme] = useState<any>(themes['light']);
   
+  
   useEffect(() => {
     setCSSVariables(theme);
   }, [themeName])
@@ -20,6 +22,7 @@ export const ThemeProvider = ({ children }: any) => {
     if (theme === themes.dark) {
       setTheme(themes.light);
       setThemeName('light');
+      
     } else {
       setTheme(themes.dark);
       setThemeName('dark');
