@@ -19,7 +19,7 @@ export const ThemeProvider = ({ children }: any) => {
     
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `/themes/lara-${themeName}-blue/theme.css`;
+    link.href = `/themes/lara-${themeName}-indigo/theme.css`;
     document.head.appendChild(link);
     return () => {
       document.head.removeChild(link);
